@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts */
+
+@font-face {
+  font-family: 'madimione';
+  src: url('../public/fonts/madimi_one/MadimiOne-Regular.ttf') format('truetype');
+}
+
+.madimi {
+  font-family: 'madimione', sans-serif;
+}
+
+
 /* CSS Reset  */
 *,
 *::before,
@@ -14,19 +26,26 @@
 }
 
 :root {
-  /* --primary-color: rgb(25, 28, 15); */
+  --primary-colour: rgb(203, 240, 120);
+  --secondary-colour: rgb(228, 97, 97);
+  --link-colour: rgb(255, 165, 0);
+  --hover-colour: rgb(255, 224, 211);
+  --accent-colour: rgb(255, 165, 0);
+  --shadows-colour: rgb(230, 126, 0);
 }
 
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  /* background: var(--primary-color); */
+  background-color: var(--primary-colour);
+  color: var(--secondary-colour);
+  font-family: 'madimione';
   /* background: rgb(22, 22, 22); */
   /* color: white; */
 }
 
 a {
-  color: white;
+  color: var(--link-colour);
   /* text-decoration: none; */
 }
 
