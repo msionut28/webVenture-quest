@@ -1,4 +1,4 @@
-const Button = ({text}) => {
+const Button = ({text}: { text: string }) => {
     return(
         <button className="bg-slate-700">{text}</button>
     )
