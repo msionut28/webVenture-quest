@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>This is WebVenture</div>
+    <main className="flex justify-center items-center">
+        <h1 className="text-4xl madimi">This is WebVenture</h1>
     </main>
   );
 }
