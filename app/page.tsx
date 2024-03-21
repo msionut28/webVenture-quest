@@ -1,9 +1,14 @@
 import Image from "next/image";
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Home | Webventure'
+}
 
 export default function Home() {
   return (
     <main className="flex flex-col justify-center items-center">
-      <h1 className="text-4xl madimi">This is WebVenture</h1>
+      <h1 className="text-4xl">This is WebVenture</h1>
       <div className="flex">
         <Image
           src={"/captain_donatello/hand-wave.svg"}

@@ -5,21 +5,21 @@ const Navbar = () => {
     <div className="w-full h-2/6 flex">
       <div className="ml-6 gap-2 flex">
         <Link href="/">
-          <button className="roboto">HOME</button>
+          <button>HOME</button>
         </Link>
         <Link href="/games">
-          <button className="roboto">GAMES</button>
+          <button>GAMES</button>
         </Link>
         <Link href="/learn">
-          <button className="roboto">LEARN</button>
+          <button>LEARN</button>
         </Link>
       </div>
       <div className="ml-auto mr-4 flex gap-2">
         <Link href="/profile">
-          <button className="roboto">PROFILE</button>
+          <button>PROFILE</button>
         </Link>
         <Link href="/login">
-          <button className="roboto">LOGIN</button>
+          <button>LOGIN</button>
         </Link>
       </div>
     </div>
