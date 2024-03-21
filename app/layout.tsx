@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "../components/Navbar/Navbar"
+import Navbar from "../components/Navbar/Navbar";
 
-const roboto = Roboto({ subsets: ["latin"], weight: '500' });
+const madimiOne = localFont({
+  src: [{ path: "../public/fonts/madimi_one/MadimiOne-Regular.ttf", weight: "500" }],
+});
 
 export const metadata: Metadata = {
-  title: "Webventure",
-  description: "Your companion in learning web development",
+  title: {
+    template: '%s | Webventure',
+    default: 'Webventure'
+  },
+  description: 'Your companion in learning web development',
 };
 
 export default function RootLayout({
@@ -17,10 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
-        <Navbar/>
+      <body className={madimiOne.className}>
+        <Navbar />
         {children}
-        </body>
+      </body>
     </html>
   );
 }
