@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "../components/Navbar/Navbar";
+import { SessionProvider } from "next-auth/react";
 
 const madimiOne = localFont({
   src: [{ path: "../public/fonts/madimi_one/MadimiOne-Regular.ttf", weight: "500" }],
@@ -16,15 +17,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children, session
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={madimiOne.className}>
+        <SessionProvider session={session}>
         <Navbar />
         {children}
+        </SessionProvider>
       </body>
     </html>
   );
