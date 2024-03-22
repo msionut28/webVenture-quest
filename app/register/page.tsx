@@ -22,15 +22,15 @@ const formSchema = z.object({
   username: z
     .string()
     .min(5, {
-      message: "Username must be at least 5 characters.",
+      message: "Nicknames are 5+ letters! Try again.",
     })
     .max(15, {
-      message: "Username must not be longer than 15 characters",
+      message: "Woah there! Keep your username under 15 characters.",
     }),
   password: z.string().min(6, {
-    message: "Password must be at least 6 characters.",
+    message: "Strong passwords are 6+ characters! Try again.",
   }),
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Uh oh! That doesn't look like a real email address!"),
 });
 
 const Register = () => {
@@ -86,7 +86,7 @@ const Register = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="eg@example.com"
+                placeholder="Your cool email address! (eg@example.com)"
                 {...form.register("email", {})}
               />
               {errors.email && (
@@ -100,7 +100,7 @@ const Register = () => {
               <Input
                 id="username"
                 type="text"
-                placeholder="Username"
+                placeholder="How would you like us to call you?"
                 {...form.register("username", {})}
               />
               {errors.username && (
@@ -114,7 +114,7 @@ const Register = () => {
               <Input
                 id="pasword"
                 type="password"
-                placeholder="Password"
+                placeholder="Pick a password that's strong and mighty!"
                 {...form.register("password", {})}
               />
               {errors.password && (
