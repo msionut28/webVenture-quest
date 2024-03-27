@@ -62,11 +62,11 @@ const Register = () => {
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid grid-cols-2 gap-6">
-              <Button  className="bg-lime-300" variant="outline" onClick={() => signIn('google', {redirect:false})}>
+              <Button  className="bg-lime-300" variant="outline" onClick={() => signIn('google')}>
                 <Icons.google className="mr-2 h-4 w-4" />
                 Google
               </Button>
-              <Button className="bg-lime-300" variant="outline" onClick={() => signIn('github', {redirect:false})}>
+              <Button className="bg-lime-300" variant="outline" onClick={() => signIn('github')}>
                 <Icons.gitHub className="mr-2 h-4 w-4" />
                 GitHub
               </Button>
