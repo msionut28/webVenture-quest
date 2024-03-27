@@ -1,9 +1,13 @@
+"use client"
+
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-const { data: session } = useSession();
 
 const Navbar = () => {
+
+  const { data: session } = useSession();
+  
   return (
     <div className="w-full h-2/6 flex">
       <div className="ml-6 gap-2 flex">
