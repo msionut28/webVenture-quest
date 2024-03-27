@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+
+const { data: session } = useSession();
 
 const Navbar = () => {
   return (
@@ -15,15 +18,22 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="ml-auto mr-4 flex gap-2">
-        <Link href="/profile">
-          <button>PROFILE</button>
-        </Link>
-        <Link href="/login">
-          <button>LOGIN</button>
-        </Link>
-        <Link href="/register">
-          <button>REGISTER</button>
-        </Link>
+        { session ? (<Link href="/chat">
+          <button>CHAT</button>
+        </Link>) : 
+         (<Link href="/login">
+         <button>LOGIN</button>
+       </Link> )
+        }
+        {session ? (
+          <Link href="/profile">
+            <button>PROFILE</button>
+          </Link>
+        ) : (
+          <Link href="/register">
+            <button>REGISTER</button>
+          </Link>
+        )}
       </div>
     </div>
   );
