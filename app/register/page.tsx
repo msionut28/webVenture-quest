@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from 'next-auth/react'
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -30,7 +30,9 @@ const formSchema = z.object({
   password: z.string().min(6, {
     message: "Strong passwords are 6+ characters! Try again.",
   }),
-  email: z.string().email("Uh oh! That doesn't look like a real email address!"),
+  email: z
+    .string()
+    .email("Uh oh! That doesn't look like a real email address!"),
 });
 
 const Register = () => {
@@ -62,11 +64,19 @@ const Register = () => {
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid grid-cols-2 gap-6">
-              <Button  className="bg-lime-300" variant="outline" onClick={() => signIn('google')}>
+              <Button
+                className="bg-lime-300"
+                variant="outline"
+                onClick={() => signIn("google")}
+              >
                 <Icons.google className="mr-2 h-4 w-4" />
                 Google
               </Button>
-              <Button className="bg-lime-300" variant="outline" onClick={() => signIn('github')}>
+              <Button
+                className="bg-lime-300"
+                variant="outline"
+                onClick={() => signIn("github")}
+              >
                 <Icons.gitHub className="mr-2 h-4 w-4" />
                 GitHub
               </Button>
@@ -131,21 +141,23 @@ const Register = () => {
             >
               Create account
             </Button>
-          <div className="relative mt-5">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
+            <div className="relative mt-5">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Already have an account?
+                </span>
+              </div>
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
-                Already have an account?
-              </span>
-            </div>
-          </div>
           </CardContent>
           <CardFooter className="flex flex-col">
-              <Link href="/login">
-                <Button className="w-80 bg-lime-300" variant="outline">Log In</Button>
-              </Link>
+            <Link href="/login">
+              <Button className="w-80 bg-lime-300" variant="outline">
+                Log In
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>
