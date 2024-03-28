@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import Logout from "../Logout/Logout";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -38,12 +39,7 @@ const Navbar = () => {
             <button>REGISTER</button>
           </Link>
         )}
-        {session && (
-          <Link href="/api/auth/signout">
-            <button>
-              Sign Out
-            </button>
-          </Link>
+        {session && (<Logout />
         )}
       </div>
     </div>
