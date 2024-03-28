@@ -1,9 +1,9 @@
 import Image from "next/image";
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Home | Webventure'
-}
+  title: "Home | Webventure",
+};
 
 export default function Home() {
   return (

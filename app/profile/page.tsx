@@ -1,14 +1,16 @@
-import type { Metadata } from "next"
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Profile',
-  description: 'Personal Profile'
-}
+import { useSession } from "next-auth/react";
 
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+  const { data: session } = useSession();
+  console.log(session);
 
-export default Profile
+  return session ? (
+    <div>Welcome back, {session.user?.name}!</div>
+  ) : (
+    <div>Please sign in to view your profile!</div>
+  );
+};
+
+export default Profile;
