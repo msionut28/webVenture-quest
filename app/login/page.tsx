@@ -1,5 +1,6 @@
 "use client";
 
+// Importing necessary dependencies from Next.js and other libraries
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -16,6 +17,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
+// Defining a validation schema for the form fields using Zod
 const formSchema = z.object({
   username: z
     .string()
@@ -30,7 +32,9 @@ const formSchema = z.object({
   }),
 });
 
+// Login component for user authentication
 const Login = () => {
+  // Initializing form using react-hook-form with Zod resolver
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,9 +47,11 @@ const Login = () => {
     formState: { errors },
   } = form;
 
+  // Function to handle form submission
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("Form data:", data);
   };
+
   return (
     <div className="flex items-center justify-center m-auto">
       <div className="flex items-center justify-center w-6/12 gap-0">
@@ -57,6 +63,7 @@ const Login = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
+            {/* Form fields for username and password */}
             <div className="grid gap-2">
               <Label htmlFor="username">Username</Label>
               <Input
@@ -74,7 +81,7 @@ const Login = () => {
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
               <Input
-                id="pasword"
+                id="password"
                 type="password"
                 placeholder="Your magic password (unlocks fun!)"
                 {...form.register("password", {})}
@@ -85,6 +92,7 @@ const Login = () => {
                 </span>
               )}
             </div>
+            {/* Login button */}
             <Button
               className="w-full bg-lime-300"
               type="submit"
@@ -93,6 +101,7 @@ const Login = () => {
             >
               Log in
             </Button>
+            {/* Divider and text */}
             <div className="relative mt-5">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />
@@ -104,10 +113,13 @@ const Login = () => {
               </div>
             </div>
           </CardContent>
+          {/* Footer with link to register */}
           <CardFooter className="flex flex-col">
-          <Link href="/register">
-                <Button className="w-80 bg-lime-300" variant="outline">Create an account</Button>
-              </Link>
+            <Link href="/register">
+              <Button className="w-80 bg-lime-300" variant="outline">
+                Create an account
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>
