@@ -105,9 +105,11 @@ const Login = () => {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">
-          <Link href="/register">
-                <Button className="w-80 bg-lime-300" variant="outline">Create an account</Button>
-              </Link>
+            <Link href="/register">
+              <Button className="w-80 bg-lime-300" variant="outline">
+                Create an account
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>

@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import Logout from "../Logout/Logout";
 
 const Navbar = () => {
+  const { data: session } = useSession();
+
   return (
     <div className="w-full h-2/6 flex">
       <div className="ml-6 gap-2 flex">
@@ -15,15 +21,26 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="ml-auto mr-4 flex gap-2">
-        <Link href="/profile">
-          <button>PROFILE</button>
-        </Link>
-        <Link href="/login">
-          <button>LOGIN</button>
-        </Link>
-        <Link href="/register">
-          <button>REGISTER</button>
-        </Link>
+        {session ? (
+          <Link href="/chat">
+            <button>CHAT</button>
+          </Link>
+        ) : (
+          <Link href="/login">
+            <button>LOGIN</button>
+          </Link>
+        )}
+        {session ? (
+          <Link href="/profile">
+            <button>PROFILE</button>
+          </Link>
+        ) : (
+          <Link href="/register">
+            <button>REGISTER</button>
+          </Link>
+        )}
+        {session && (<Logout />
+        )}
       </div>
     </div>
   );
