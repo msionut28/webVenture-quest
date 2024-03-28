@@ -1,5 +1,6 @@
 "use client";
 
+// Importing necessary dependencies from Next.js and other libraries
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
 
+// Defining a validation schema for the form fields using Zod
 const formSchema = z.object({
   username: z
     .string()
@@ -35,7 +37,9 @@ const formSchema = z.object({
     .email("Uh oh! That doesn't look like a real email address!"),
 });
 
+// Register component for user registration
 const Register = () => {
+  // Initializing form using react-hook-form with Zod resolver
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,9 +53,11 @@ const Register = () => {
     formState: { errors },
   } = form;
 
+  // Function to handle form submission
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("Form data:", data);
   };
+
   return (
     <div className="flex items-center justify-center m-auto">
       <div className="flex items-center justify-center w-6/12 gap-0">
@@ -63,6 +69,7 @@ const Register = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
+            {/* Social login buttons */}
             <div className="grid grid-cols-2 gap-6">
               <Button
                 className="bg-lime-300"
@@ -81,6 +88,7 @@ const Register = () => {
                 GitHub
               </Button>
             </div>
+            {/* Divider and text */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />
@@ -91,6 +99,7 @@ const Register = () => {
                 </span>
               </div>
             </div>
+            {/* Form fields for email, username, and password */}
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -122,7 +131,7 @@ const Register = () => {
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
               <Input
-                id="pasword"
+                id="password"
                 type="password"
                 placeholder="Pick a password that's strong and mighty!"
                 {...form.register("password", {})}
@@ -133,6 +142,7 @@ const Register = () => {
                 </span>
               )}
             </div>
+            {/* Submit button */}
             <Button
               className="w-full bg-lime-300"
               type="submit"
@@ -141,6 +151,7 @@ const Register = () => {
             >
               Create account
             </Button>
+            {/* Divider and text */}
             <div className="relative mt-5">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />
@@ -152,6 +163,7 @@ const Register = () => {
               </div>
             </div>
           </CardContent>
+          {/* Footer with login link */}
           <CardFooter className="flex flex-col">
             <Link href="/login">
               <Button className="w-80 bg-lime-300" variant="outline">
