@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,11 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Post model
-model Post {
-  id        String   @id @default(cuid())
-  title     String   @db.VarChar(255)
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+enum Topic {
+  HTML
+  CSS
+  JS
+}
+
+// User model
+model User {
+  id           String          @id @default(uuid()) @db.VarChar(36)
+  username     String          @unique
+  email        String          @unique
+  password     String
+  profilepic   String
+  level        Int              @default(1)         // Users will be starting at a default LEVEL 1  
+  experience   Int              @default(0)         // Needed for reaching new levels
+  plan         Boolean          @default(false)     // Users will by default be assigned to a FREE PLAN
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt          // Users will only be allowed to change their usernames every 30 days
+  userProgress UserProgress?  
+}
+
+// User progress model
+model UserProgress {
+  id           String           @id @default(uuid()) @db.VarChar(36)
+  userId       String           @unique
+  lessonId     String
+  // Foreign key constraints
+  lesson       Lesson           @relation(fields: [lessonId], references: [id])
+  User         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Lesson model
+model Lesson {
+  id           String           @id @default(uuid()) @db.VarChar(36)
+  title        String           @db.VarChar(255)
+  content      String
+  topic        Topic
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  userProgress UserProgress[]   
 }
