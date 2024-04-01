@@ -18,6 +18,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
+import type { UserData } from "@/types";
 
 // Defining a validation schema for the form fields using Zod
 const formSchema = z.object({
@@ -53,6 +54,29 @@ const Register = () => {
     formState: { errors },
   } = form;
 
+  //Function to handle 3rd Party Auth registration
+  const authRegister = async(auth: "google" | "github") => {
+    try {
+      const response = await signIn(auth)
+      console.log(response);
+      
+      // if (response?.error) {
+      //   console.error("Authentication failed:", response.error) 
+      //   return
+      // }
+      // const userData: UserData | undefined = response
+      // if (!userData) {
+      //   console.error("No user data received from authentication.")
+      //   return
+      // }
+      // const { email, name, image, id } = userData;
+
+    }
+    catch (error) {
+      console.error("Error during authentication:", error)
+    }
+  }
+
   // Function to handle form submission
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("Form data:", data);
@@ -74,7 +98,7 @@ const Register = () => {
               <Button
                 className="bg-lime-300"
                 variant="outline"
-                onClick={() => signIn("google")}
+                onClick={() => authRegister("google")}
               >
                 <Icons.google className="mr-2 h-4 w-4" />
                 Google
@@ -82,7 +106,7 @@ const Register = () => {
               <Button
                 className="bg-lime-300"
                 variant="outline"
-                onClick={() => signIn("github")}
+                onClick={() => authRegister("github")}
               >
                 <Icons.gitHub className="mr-2 h-4 w-4" />
                 GitHub
