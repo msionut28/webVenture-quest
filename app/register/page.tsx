@@ -1,11 +1,12 @@
 "use client";
 
 // Importing necessary dependencies from Next.js and other libraries
-import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { signIn } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -40,6 +41,7 @@ const formSchema = z.object({
 
 // Register component for user registration
 const Register = () => {
+  const { data: session } = useSession()
   // Initializing form using react-hook-form with Zod resolver
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -58,18 +60,17 @@ const Register = () => {
   const authRegister = async(auth: "google" | "github") => {
     try {
       const response = await signIn(auth)
-      console.log(response);
+      if (response?.error) {
+        console.error("Authentication failed:", response.error) 
+        return
+      }
+      const userData = session?.user
+      if (!userData) {
+        console.error("No user data received from authentication.")
+        return
+      }
+      console.log(userData);
       
-      // if (response?.error) {
-      //   console.error("Authentication failed:", response.error) 
-      //   return
-      // }
-      // const userData: UserData | undefined = response
-      // if (!userData) {
-      //   console.error("No user data received from authentication.")
-      //   return
-      // }
-      // const { email, name, image, id } = userData;
 
     }
     catch (error) {
