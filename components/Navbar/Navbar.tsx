@@ -3,7 +3,7 @@
 // Importing necessary dependencies from Next.js, NextAuth, and components
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import Logout from "../Logout/Logout";
+import { Logout } from "@/components/index";
 
 // Navbar component for navigation bar
 const Navbar = () => {

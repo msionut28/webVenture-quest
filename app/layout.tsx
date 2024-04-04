@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
 import { AuthSessionProvider } from "@/components/ClientSessionProvider";
+import { Navbar } from "@/components/index";
 
 const madimiOne = localFont({
   src: [
