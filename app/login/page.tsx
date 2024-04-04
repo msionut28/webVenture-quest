@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { userLogin } from "@/lib/schemas/userLoginSchema";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,26 +18,11 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
-// Defining a validation schema for the form fields using Zod
-const formSchema = z.object({
-  username: z
-    .string()
-    .min(5, {
-      message: "Nicknames are 5+ letters! Try again.",
-    })
-    .max(15, {
-      message: "Woah there! Keep your username under 15 characters.",
-    }),
-  password: z.string().min(6, {
-    message: "Your strong password is 6+ characters! Try again.",
-  }),
-});
-
 // Login component for user authentication
 const Login = () => {
   // Initializing form using react-hook-form with Zod resolver
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof userLogin>>({
+    resolver: zodResolver(userLogin),
     defaultValues: {
       username: "",
       password: "",
@@ -48,7 +34,7 @@ const Login = () => {
   } = form;
 
   // Function to handle form submission
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onSubmit = (data: z.infer<typeof userLogin>) => {
     console.log("Form data:", data);
   };
 
