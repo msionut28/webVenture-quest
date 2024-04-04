@@ -6,6 +6,7 @@ import { z } from "zod";
 import { signIn } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { userRegister } from "@/lib/schemas/userRegister";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,29 +20,11 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
 
-// Defining a validation schema for the form fields using Zod
-const formSchema = z.object({
-  username: z
-    .string()
-    .min(5, {
-      message: "Nicknames are 5+ letters! Try again.",
-    })
-    .max(15, {
-      message: "Woah there! Keep your username under 15 characters.",
-    }),
-  password: z.string().min(6, {
-    message: "Strong passwords are 6+ characters! Try again.",
-  }),
-  email: z
-    .string()
-    .email("Uh oh! That doesn't look like a real email address!"),
-});
-
 // Register component for user registration
 const Register = (context: any) => {
   // Initializing form using react-hook-form with Zod resolver
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof userRegister>>({
+    resolver: zodResolver(userRegister),
     defaultValues: {
       username: "",
       password: "",
@@ -54,7 +37,7 @@ const Register = (context: any) => {
   } = form;
 
   // Function to handle form submission
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onSubmit = (data: z.infer<typeof userRegister>) => {
     console.log("Form data:", data);
   };
 
