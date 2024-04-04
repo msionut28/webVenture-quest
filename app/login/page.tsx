@@ -1,22 +1,18 @@
 "use client";
 
-// Importing necessary dependencies from Next.js and other libraries
-import { zodResolver } from "@hookform/resolvers/zod";
+// Importing necessary dependencies from libraries
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
-import { userLogin } from "@/lib/schemas/userLoginSchema";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { userLogin } from "@/lib/schemas/userLoginSchema";
+import Divider from "@/components/Divider/Divider";
+import CustomCardFooter from "@/components/CustomCardFooter/CustomCardFooter";
+import CustomCardHeader from "@/components/CustomCardHeader/CustomCardHeader";
+import CustomSubmitButton from "@/components/CustomSubmitButton/CustomSubmitButton";
+import SocialLoginButtons from "@/components/SocialLoginButtons/SocialLoginButtons";
 
 // Login component for user authentication
 const Login = () => {
@@ -42,13 +38,13 @@ const Login = () => {
     <div className="flex items-center justify-center m-auto">
       <div className="flex items-center justify-center w-6/12 gap-0">
         <Card className="shadow-2xl">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Log in to your account</CardTitle>
-            <CardDescription>
-              Fill in the fields below to log in to your account
-            </CardDescription>
-          </CardHeader>
+          <CustomCardHeader
+            title={"Log in to your account"}
+            description={"Fill in the fields below to log in to your account"}
+          />
           <CardContent className="grid gap-4">
+            <SocialLoginButtons />
+            <Divider text={"Or continue with..."} />
             {/* Form fields for username and password */}
             <div className="grid gap-2">
               <Label htmlFor="username">Username</Label>
@@ -78,35 +74,13 @@ const Login = () => {
                 </span>
               )}
             </div>
-            {/* Login button */}
-            <Button
-              className="w-full bg-lime-300"
-              type="submit"
-              onClick={handleSubmit(onSubmit)}
-              variant="outline"
-            >
-              Log in
-            </Button>
-            {/* Divider and text */}
-            <div className="relative mt-5">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">
-                  Don't have an account yet?
-                </span>
-              </div>
-            </div>
+            <CustomSubmitButton
+              text={"Log In"}
+              function={handleSubmit(onSubmit)}
+            />
+            <Divider text={"Don't have an account yet?"} />
           </CardContent>
-          {/* Footer with link to register */}
-          <CardFooter className="flex flex-col">
-            <Link href="/register">
-              <Button className="w-80 bg-lime-300" variant="outline">
-                Create an account
-              </Button>
-            </Link>
-          </CardFooter>
+          <CustomCardFooter href={"/register"} text={"Create an account"} />
         </Card>
       </div>
     </div>
