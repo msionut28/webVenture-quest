@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
 
 // Register component for user registration
-const Register = (context: any) => {
+const Register = () => {
   // Initializing form using react-hook-form with Zod resolver
   const form = useForm<z.infer<typeof userRegister>>({
     resolver: zodResolver(userRegister),
