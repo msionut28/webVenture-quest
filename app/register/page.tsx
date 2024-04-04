@@ -8,11 +8,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { userRegister } from "@/lib/schemas/userRegister";
-import {Divider} from "@/components/index";
-import {CustomCardHeader} from "@/components/index";
-import {CustomCardFooter} from "@/components/index";
-import {CustomSubmitButton} from "@/components/index";
-import {SocialLoginButtons} from "@/components/index";
+import { Divider } from "@/components/index";
+import { CustomCardHeader } from "@/components/index";
+import { CustomCardFooter } from "@/components/index";
+import { CustomSubmitButton } from "@/components/index";
+import { SocialLoginButtons } from "@/components/index";
 
 // Register component for user registration
 const Register = () => {
