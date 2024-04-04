@@ -2,12 +2,12 @@
 
 // Importing necessary dependencies from Next.js and other libraries
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { userRegister } from "@/lib/schemas/userRegister";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { userRegister } from "@/lib/schemas/userRegister";
 import Divider from "@/components/Divider/Divider";
 import CustomCardHeader from "@/components/CustomCardHeader/CustomCardHeader";
 import CustomCardFooter from "@/components/CustomCardFooter/CustomCardFooter";
