@@ -1,6 +1,8 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
+import findUserByEmail from '@/db/queries/findUserByEmail';
+import nextauthCreateUser from '@/db/actions/nextauthCreateUser';
 
 // Define a NextAuth handler for authentication
 const handler = NextAuth({
@@ -20,6 +22,10 @@ const handler = NextAuth({
     callbacks: {
         // Callback for custom signIn logic
         async signIn({user}) {
+            const existingUser = await findUserByEmail(user.email)
+            if (existingUser) return user
+            console.log("New user: ", user);
+            nextauthCreateUser(user.email, user.image)
             return user; // Return the user object after sign-in
         },
         // Callback for custom session handling

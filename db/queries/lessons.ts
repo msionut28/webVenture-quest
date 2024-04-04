@@ -1,8 +1,8 @@
-import type { Post } from "@prisma/client";
+import type { Lesson } from "@prisma/client";
 import { db } from "@/db";
 
-export async function fetchLessons(): Promise<Post[]> {
-    return await db.post.findMany({
+const fetchLessons = async(): Promise<Lesson[]> => {
+    return await db.lesson.findMany({
         orderBy: [
             {
                 updatedAt: 'desc'
@@ -10,3 +10,5 @@ export async function fetchLessons(): Promise<Post[]> {
         ]
     })
 }
+
+export default fetchLessons
