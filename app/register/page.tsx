@@ -1,10 +1,10 @@
 "use client";
 
-import type { Metadata } from "next";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { userLoginSchema } from "@/lib/schemas/userLoginSchema";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,24 +18,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
 
-const formSchema = z.object({
-  username: z
-    .string()
-    .min(5, {
-      message: "Nicknames are 5+ letters! Try again.",
-    })
-    .max(15, {
-      message: "Woah there! Keep your username under 15 characters.",
-    }),
-  password: z.string().min(6, {
-    message: "Strong passwords are 6+ characters! Try again.",
-  }),
-  email: z.string().email("Uh oh! That doesn't look like a real email address!"),
-});
-
 const Register = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof userLoginSchema>>({
+    resolver: zodResolver(userLoginSchema),
     defaultValues: {
       username: "",
       password: "",
@@ -47,7 +32,7 @@ const Register = () => {
     formState: { errors },
   } = form;
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onSubmit = (data: z.infer<typeof userLoginSchema>) => {
     console.log("Form data:", data);
   };
   return (
