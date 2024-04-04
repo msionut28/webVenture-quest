@@ -6,7 +6,6 @@ import { z } from "zod";
 import { signIn } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,7 +18,6 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/ui/icons";
-import type { UserData } from "@/types";
 
 // Defining a validation schema for the form fields using Zod
 const formSchema = z.object({
@@ -40,8 +38,7 @@ const formSchema = z.object({
 });
 
 // Register component for user registration
-const Register = () => {
-  const { data: session } = useSession()
+const Register = (context: any) => {
   // Initializing form using react-hook-form with Zod resolver
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,28 +52,6 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = form;
-
-  //Function to handle 3rd Party Auth registration
-  const authRegister = async(auth: "google" | "github") => {
-    try {
-      const response = await signIn(auth)
-      if (response?.error) {
-        console.error("Authentication failed:", response.error) 
-        return
-      }
-      const userData = session?.user
-      if (!userData) {
-        console.error("No user data received from authentication.")
-        return
-      }
-      console.log(userData);
-      
-
-    }
-    catch (error) {
-      console.error("Error during authentication:", error)
-    }
-  }
 
   // Function to handle form submission
   const onSubmit = (data: z.infer<typeof formSchema>) => {
@@ -99,7 +74,7 @@ const Register = () => {
               <Button
                 className="bg-lime-300"
                 variant="outline"
-                onClick={() => authRegister("google")}
+                onClick={() => signIn("google")}
               >
                 <Icons.google className="mr-2 h-4 w-4" />
                 Google
@@ -107,7 +82,7 @@ const Register = () => {
               <Button
                 className="bg-lime-300"
                 variant="outline"
-                onClick={() => authRegister("github")}
+                onClick={() => signIn("github")}
               >
                 <Icons.gitHub className="mr-2 h-4 w-4" />
                 GitHub
