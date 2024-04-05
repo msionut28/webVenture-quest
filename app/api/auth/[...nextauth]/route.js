@@ -2,9 +2,9 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
 import Credentials from 'next-auth/providers/credentials';
-import findUserByEmail from '@/db/queries/findUserByEmail';
-import findUserByUsername from "@/db/queries/findUserByUsername"
-import nextauthCreateUser from '@/db/actions/nextauthCreateUser';
+import findUserByEmail from '@/db/queries/index';
+import findUserByUsername from "@/db/queries/index"
+import nextauthCreateUser from '@/db/actions/index';
 
 // Define a NextAuth handler for authentication
 const handler = NextAuth({
