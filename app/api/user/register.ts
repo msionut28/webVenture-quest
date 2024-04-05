@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import credentialsCreateUser from "@/db/actions/credentialsCreateUser";
+import { credentialsCreateUser } from "@/db/actions/index";
 
 const userRegister = async (req: NextApiRequest, res:NextApiResponse) => {
     if(req.method === "POST") {
