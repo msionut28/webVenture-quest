@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { userRegister } from "@/lib/schemas/userRegister";
+import { credentialsUserRegister } from "@/actions/index";
 import { Divider } from "@/components/index";
 import { CustomCardHeader } from "@/components/index";
 import { CustomCardFooter } from "@/components/index";
@@ -29,11 +30,6 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = form;
-
-  // Function to handle form submission
-  const onSubmit = (data: z.infer<typeof userRegister>) => {
-    console.log("Form data:", data);
-  };
 
   return (
     <div className="flex items-center justify-center m-auto">
@@ -91,7 +87,7 @@ const Register = () => {
             </div>
             <CustomSubmitButton
               text={"Create Account"}
-              function={handleSubmit(onSubmit)}
+              function={handleSubmit(credentialsUserRegister)}
             />
             <Divider text={"Aleady have an account?"} />
           </CardContent>

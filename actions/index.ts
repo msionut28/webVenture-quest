@@ -1,0 +1,1 @@
+export {default as credentialsUserRegister} from "./user/credentialsRegister"
