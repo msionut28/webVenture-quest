@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { credentialsCreateUser } from "@/db/actions/index";
 
-const userRegister = async (req: NextApiRequest, res:NextApiResponse) => {
+const POST = async (req: NextApiRequest, res:NextApiResponse) => {
     if(req.method === "POST") {
         await credentialsCreateUser(req, res)
     } else {
@@ -9,4 +9,4 @@ const userRegister = async (req: NextApiRequest, res:NextApiResponse) => {
     }
 }
 
-export default userRegister
+export default POST
