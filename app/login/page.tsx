@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { userLogin } from "@/lib/schemas/userLoginSchema";
+import { credentialsUserLogin } from "@/actions";
 import { Divider } from "@/components/index";
 import { CustomCardHeader } from "@/components/index";
 import { CustomCardFooter } from "@/components/index";
@@ -30,9 +31,9 @@ const Login = () => {
   } = form;
 
   // Function to handle form submission
-  const onSubmit = (data: z.infer<typeof userLogin>) => {
-    console.log("Form data:", data);
-  };
+  // const onSubmit = (data: z.infer<typeof userLogin>) => {
+  //   console.log("Form data:", data);
+  // };
 
   return (
     <div className="flex items-center justify-center m-auto">
@@ -76,7 +77,7 @@ const Login = () => {
             </div>
             <CustomSubmitButton
               text={"Log In"}
-              function={handleSubmit(onSubmit)}
+              function={handleSubmit(credentialsUserLogin)}
             />
             <Divider text={"Don't have an account yet?"} />
           </CardContent>
