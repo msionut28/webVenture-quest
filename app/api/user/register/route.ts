@@ -32,7 +32,3 @@ export async function POST(req: NextRequest, res: NextResponse) {
         }
       );
     }
-  } else {
-    throw new Error(`The HTTP ${req.method} is not supported at this route!`);
-  }
-}
