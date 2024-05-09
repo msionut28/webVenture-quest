@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { userRegister } from "@/lib/schemas/userRegister";
 
-const onSubmitCredentials = async (data: z.infer<typeof userRegister>) => {
+const credentialsUserRegister = async (data: z.infer<typeof userRegister>) => {
   try {
     const user = { ...data };
     // Preparing the fetch request
@@ -19,4 +19,4 @@ const onSubmitCredentials = async (data: z.infer<typeof userRegister>) => {
   }
 };
 
-export default onSubmitCredentials;
+export default credentialsUserRegister;

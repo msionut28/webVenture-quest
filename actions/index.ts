@@ -1,1 +1,1 @@
-export {default as credentialsUserRegister} from "./user/credentialsRegister"
+export {default as credentialsUserRegister} from "./user/credentialsUserRegister"
