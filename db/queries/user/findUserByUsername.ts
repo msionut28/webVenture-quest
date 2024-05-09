@@ -6,3 +6,5 @@ const findUserByUsername = async (username :string): Promise<User | null> => {
         where: { username }
     })
 }
+
+export default findUserByUsername

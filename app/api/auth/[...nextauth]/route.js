@@ -2,10 +2,9 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
 import Credentials from 'next-auth/providers/credentials';
-import findUserByEmail from '@/db/queries/findUserByEmail';
-import findUserByUsername from "@/db/queries/findUserByUsername"
-import nextauthCreateUser from '@/db/actions/nextauthCreateUser';
-import credentialsCreateUser from '@/db/actions/credentialsCreateUser';
+import findUserByEmail from '@/db/queries/index';
+import findUserByUsername from "@/db/queries/index"
+import nextauthCreateUser from '@/db/actions/index';
 
 // Define a NextAuth handler for authentication
 const handler = NextAuth({
@@ -25,11 +24,10 @@ const handler = NextAuth({
             credentials: {
                 username: {label: "username", type: "text"},
                 password: {label: "password", type: "password"},
-                email: {label: "email", type: "email"}
             },
             authorize: async(credentials, req) => {
                 const { username, password } = credentials
-                const user = await findUserByEmail(username)
+                const user = await findUserByUsername(username)
                 if (user && password) {
                     return user
                 }
