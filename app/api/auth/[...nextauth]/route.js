@@ -1,8 +1,10 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
-import findUserByEmail from '@/db/queries/findUserByEmail';
-import nextauthCreateUser from '@/db/actions/nextauthCreateUser';
+import Credentials from 'next-auth/providers/credentials';
+import findUserByEmail from '@/db/queries/index';
+import findUserByUsername from "@/db/queries/index"
+import nextauthCreateUser from '@/db/actions/index';
 
 // Define a NextAuth handler for authentication
 const handler = NextAuth({
@@ -16,6 +18,20 @@ const handler = NextAuth({
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        }),
+        Credentials({
+            name: "Custom Login",       
+            credentials: {
+                username: {label: "username", type: "text"},
+                password: {label: "password", type: "password"},
+            },
+            authorize: async(credentials, req) => {
+                const { username, password } = credentials
+                const user = await findUserByUsername(username)
+                if (user && password) {
+                    return user
+                }
+            }
         })
     ],
     secret: process.env.NEXTAUTH_SECRET, // Secret key used for session encryption
