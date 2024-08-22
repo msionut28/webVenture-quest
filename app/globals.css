@@ -34,8 +34,8 @@
  
     --radius: 0.5rem;
 
-    --primary-colour: rgb(12, 35, 64);
-    --secondary-colour: 82.2 84.5% 67.1%;
+    --primary-colour: rgb(254, 255, 223);
+    --secondary-colour: rgb(58, 71, 80);
     --link-colour: rgb(255, 165, 0);
     --hover-colour: rgb(255, 224, 211);
     --accent-colour: rgb(255, 165, 0);
@@ -95,8 +95,8 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background-color: var(--primary-colour);
-  /* color: var(--secondary-colour); */
-  color: white;
+  color: var(--secondary-colour);
+  /* color: #3a4750; */
 }
 
 a {
@@ -152,14 +152,8 @@ h6 {
 }
 
 .fade-rule {
-  height: 1.5px;
-  background-color: #E6E6E6;
-  width: 66.0em;
-  margin: 0 auto;
-  background-image: linear-gradient(left, rgb(0, 34, 68) 2%, white 50%, rgb(0, 34, 68) 98%);
-  background-image: -o-linear-gradient(left, rgb(0, 34, 68) 2%, white 50%, rgb(0, 34, 68) 98%);
-  background-image: -moz-linear-gradient(left, rgb(0, 34, 68) 2%, white 50%, rgb(0, 34, 68) 98%);
-  background-image: -webkit-linear-gradient(left, rgb(0, 34, 68) 2%, white 50%, rgb(0, 34, 68) 98%);
-  background-image: -ms-linear-gradient(left, rgb(0, 34, 68) 2%, white 50%, rgb(0, 34, 68) 98%);
-  background-image: -webkit-gradient(linear, left bottom, right bottom, color-stop(0.02, rgb(0, 34, 68)), color-stop(0.5, white), color-stop(0.98, rgb(0, 34, 68)));
+  height: 2px;
+  width: 100%;
+  background: blue;
+  background: linear-gradient(90deg, var(--primary-colour), var(--secondary-colour), var(--primary-colour));
 }

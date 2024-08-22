@@ -8,7 +8,7 @@
 
 .link-btn {
     position: relative;
-    color: #000000;
+    color: var(--secondary-colour);
     text-decoration: none;
     margin: 0 1vw;
     font-size: 1.1em;
@@ -22,7 +22,7 @@
     bottom: 0;
     left: 0;
     content: '';
-    background-color: #ffffff;
+    background-color: var(--secondary-colour);
     transform-origin: bottom;
     transition: transform 0.3s ease-out;
     transform: scaleX(0);
